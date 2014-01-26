@@ -1,4 +1,7 @@
 .card {
-    background-color: red;
-    height: 100px;
+    background-color: #b6edff;
+}
+.card .column {
+    text-align: center;
+    padding: 15px 0px 15px 0px;
 }
