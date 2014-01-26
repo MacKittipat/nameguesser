@@ -14,19 +14,18 @@ $(document).ready(function() {
                 countCardSelected++;
             }
         });
-        if(
-                (countCardSelected > 0 && $("#btnNextChar").is(':hidden')) || 
-                (countCardSelected == 0 && !$("#btnNextChar").is(':hidden'))) {
-            $("#btnNextChar").toggle();
+        if((countCardSelected > 0 && $("#btnNextChar").is(":disabled")) || 
+                (countCardSelected == 0 && !$("#btnNextChar").is(":disabled"))) {
+            toggleDisabled("#btnNextChar");
         }
     });
     
     $("#btnNextChar").click(function() {
         addNameValues();
-        // Hidden 
-        $("#btnNextChar").hide();
         // Clear card
         $(".card").removeClass(classCardSelected);
+        // Disable btnNextChar
+        $("#btnNextChar").attr("disabled", "disabled");
     });
     
     $("#btnGuess").click(function() {
@@ -37,6 +36,8 @@ $(document).ready(function() {
         nameValues = new Array();
         // Clear card
         $(".card").removeClass(classCardSelected);
+        // Disable btnNextChar
+        $("#btnNextChar").attr("disabled", "disabled");
     });
 });
 
@@ -47,7 +48,6 @@ function addNameValues() {
             charValues.push(cardIndexValues[index]);
         }
     });
-    console.log(charValues);
     if(charValues.length > 0) {
         nameValues.push(charValues);  
     }
@@ -64,4 +64,12 @@ function calculateName() {
         result += chars[charIndex - 1];
     }
     $("#txtAnswer").html(result);
+}
+
+function toggleDisabled(selector) {
+    if($(selector).attr("disabled") === undefined) {
+        $(selector).attr("disabled", "disabled");
+    } else {
+        $(selector).removeAttr("disabled");
+    }
 }
