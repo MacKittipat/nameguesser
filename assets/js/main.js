@@ -61,7 +61,9 @@ function calculateName() {
         for(var j = 0; j < charValues.length; j++) {
             charIndex += charValues[j];
         }
-        result += chars[charIndex - 1];
+        if(chars[charIndex - 1] !== undefined) {
+            result += chars[charIndex - 1];
+        }
     }
     $("#txtAnswer").html(result);
 }
