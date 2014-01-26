@@ -8,25 +8,22 @@ var classCardSelected = "card_selected";
 $(document).ready(function() {
     $(".card").click(function() {
         $(this).toggleClass(classCardSelected);
+        // Enable / Disable btnNextChar
         var countCardSelected = 0;
         $(".card").each(function(index) {
             if ($(this).hasClass(classCardSelected)) {
                 countCardSelected++;
             }
         });
-        if(
-                (countCardSelected > 0 && $("#btnNextChar").is(':hidden')) || 
-                (countCardSelected == 0 && !$("#btnNextChar").is(':hidden'))) {
-            $("#btnNextChar").toggle();
+        if((countCardSelected > 0 && $("#btnNextChar").is(":disabled")) || 
+                (countCardSelected == 0 && !$("#btnNextChar").is(":disabled"))) {
+            toggleDisabled("#btnNextChar");
         }
     });
     
     $("#btnNextChar").click(function() {
         addNameValues();
-        // Hidden 
-        $("#btnNextChar").hide();
-        // Clear card
-        $(".card").removeClass(classCardSelected);
+        clearCard();
     });
     
     $("#btnGuess").click(function() {
@@ -36,7 +33,14 @@ $(document).ready(function() {
         // Clear nameValues
         nameValues = new Array();
         // Clear card
-        $(".card").removeClass(classCardSelected);
+        clearCard();
+    });
+    
+    $("#btnReset").click(function() {
+        // Clear nameValues
+        nameValues = new Array();
+        // Clear card
+        clearCard();
     });
 });
 
@@ -47,7 +51,6 @@ function addNameValues() {
             charValues.push(cardIndexValues[index]);
         }
     });
-    console.log(charValues);
     if(charValues.length > 0) {
         nameValues.push(charValues);  
     }
@@ -61,7 +64,24 @@ function calculateName() {
         for(var j = 0; j < charValues.length; j++) {
             charIndex += charValues[j];
         }
-        result += chars[charIndex - 1];
+        if(chars[charIndex - 1] !== undefined) {
+            result += chars[charIndex - 1];
+        }
     }
     $("#txtAnswer").html(result);
+}
+
+function toggleDisabled(selector) {
+    if($(selector).attr("disabled") === undefined) {
+        $(selector).attr("disabled", "disabled");
+    } else {
+        $(selector).removeAttr("disabled");
+    }
+}
+
+function clearCard() {
+    // Clear card
+    $(".card").removeClass(classCardSelected);
+    // Disable btnNextChar
+    $("#btnNextChar").attr("disabled", "disabled");
 }
