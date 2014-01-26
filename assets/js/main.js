@@ -8,6 +8,7 @@ var classCardSelected = "card_selected";
 $(document).ready(function() {
     $(".card").click(function() {
         $(this).toggleClass(classCardSelected);
+        // Enable / Disable btnNextChar
         var countCardSelected = 0;
         $(".card").each(function(index) {
             if ($(this).hasClass(classCardSelected)) {
@@ -22,10 +23,7 @@ $(document).ready(function() {
     
     $("#btnNextChar").click(function() {
         addNameValues();
-        // Clear card
-        $(".card").removeClass(classCardSelected);
-        // Disable btnNextChar
-        $("#btnNextChar").attr("disabled", "disabled");
+        clearCard();
     });
     
     $("#btnGuess").click(function() {
@@ -35,9 +33,14 @@ $(document).ready(function() {
         // Clear nameValues
         nameValues = new Array();
         // Clear card
-        $(".card").removeClass(classCardSelected);
-        // Disable btnNextChar
-        $("#btnNextChar").attr("disabled", "disabled");
+        clearCard();
+    });
+    
+    $("#btnReset").click(function() {
+        // Clear nameValues
+        nameValues = new Array();
+        // Clear card
+        clearCard();
     });
 });
 
@@ -74,4 +77,11 @@ function toggleDisabled(selector) {
     } else {
         $(selector).removeAttr("disabled");
     }
+}
+
+function clearCard() {
+    // Clear card
+    $(".card").removeClass(classCardSelected);
+    // Disable btnNextChar
+    $("#btnNextChar").attr("disabled", "disabled");
 }
