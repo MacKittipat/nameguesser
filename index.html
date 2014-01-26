@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>I can guess your name</title>
+        <title>This app can guess your name</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="assets/lib/foundation/css/normalize.css">
@@ -12,10 +12,13 @@
         <script type="text/javascript" src="assets/js/main.js"></script>
     </head>
     <body>
-        <div class="row">
+        <div class="row row_margin">
             <h1 class="column large-12">
-                <a href="">
-                    I can guess your name
+                <a href="" style="float: left">
+                    This app can guess your name
+                </a>
+                <a href="https://github.com/MacKittipat/nameguesser/wiki#wiki-how-to-play" style="float: right">
+                    How to play ?
                 </a>
             </h1>
         </div>
@@ -335,6 +338,11 @@
         </div>
         <div class="row row_margin">
             Your name is <span id="txtAnswer"></span>
+        </div>
+        <div class="row row_margin" id="footer">
+            <a style="float: right" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://mackittipat.github.io/nameguesser">
+                Share on Facebook
+            </a>
         </div>
     </body>
 </html>
