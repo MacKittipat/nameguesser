@@ -8,8 +8,16 @@
         <link rel="stylesheet" type="text/css" href="assets/lib/foundation/css/foundation.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script type="text/javascript" src="assets/lib/jquery/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="assets/js/main.js"></script>
     </head>
     <body>
+        <div class="row">
+            <h1 class="column large-12">
+                <a href="">
+                    I can guess your name
+                </a>
+            </h1>
+        </div>
         <div class="row">
             <div class="column large-4 card">
                 <div class="row">
@@ -316,6 +324,17 @@
                         &nbsp;
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="button" id="btnNextChar" value="Next Character" />
+            <input type="button" id="btnGuess" value="Guess" />
+        </div>
+        <div class="row">
+            <div class="column large-2">
+                Your name is 
+            </div>
+            <div id="txtAnswer" class="column large-10">
             </div>
         </div>
     </body>

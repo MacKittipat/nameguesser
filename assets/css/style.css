@@ -1,5 +1,9 @@
 .card {
     background-color: #b6edff;
+    cursor: pointer;
+}
+.card_selected {
+    background-color: #008cba;
 }
 .card .column {
     text-align: center;
