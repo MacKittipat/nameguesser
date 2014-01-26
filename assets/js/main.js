@@ -8,12 +8,23 @@ var classCardSelected = "card_selected";
 $(document).ready(function() {
     $(".card").click(function() {
         $(this).toggleClass(classCardSelected);
+        var countCardSelected = 0;
+        $(".card").each(function(index) {
+            if ($(this).hasClass(classCardSelected)) {
+                countCardSelected++;
+            }
+        });
+        if(
+                (countCardSelected > 0 && $("#btnNextChar").is(':hidden')) || 
+                (countCardSelected == 0 && !$("#btnNextChar").is(':hidden'))) {
+            $("#btnNextChar").toggle();
+        }
     });
     
     $("#btnNextChar").click(function() {
         addNameValues();
-        // Append _
-        $("#txtAnswer").html($("#txtAnswer").html() + "_");
+        // Hidden 
+        $("#btnNextChar").hide();
         // Clear card
         $(".card").removeClass(classCardSelected);
     });
@@ -22,6 +33,10 @@ $(document).ready(function() {
         addNameValues();
         // Display result
         calculateName();
+        // Clear nameValues
+        nameValues = new Array();
+        // Clear card
+        $(".card").removeClass(classCardSelected);
     });
 });
 
@@ -32,7 +47,10 @@ function addNameValues() {
             charValues.push(cardIndexValues[index]);
         }
     });
-    nameValues.push(charValues);
+    console.log(charValues);
+    if(charValues.length > 0) {
+        nameValues.push(charValues);  
+    }
 }
 
 function calculateName() {
